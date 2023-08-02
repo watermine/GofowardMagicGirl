@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    //モンスターの移動速度
-    private float speed = -2;
-
     //消滅位置
     private float deadLine = -10;
+
+    //モンスターの移動速度
+    public float speed;
 
     Animator animator;
     //モンスターの攻撃力
@@ -40,7 +40,7 @@ public class EnemyManager : MonoBehaviour
     {
         player.Damage(attackPower);
     }
-    
+
     //モンスターオブジェクトが破棄される処理を遅らせて実行
     public void OnDamage()
     {
@@ -58,13 +58,11 @@ public class EnemyManager : MonoBehaviour
     {
         if(other.gameObject.tag == "MagicBall")
         {
-            Destroy(other.gameObject);
             animator.SetTrigger("isDeath");
             boxCollider2D = this.GetComponent<BoxCollider2D>();
             boxCollider2D.enabled = false;
             Invoke("Destroy", 0.4f);
-
-
         }
+
     }
 }

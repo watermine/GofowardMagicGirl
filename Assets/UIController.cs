@@ -41,11 +41,14 @@ public class UIController : MonoBehaviour
             this.runLengthText.GetComponent<Text>().text = "Distance：" + len.ToString("F2") + "m";
         }
 
-        //一定距離以上走ればクリア
+        //一定距離以上走ればボスシーンへ
         if (this.len >= 100)
         {
-            this.gameOverText.GetComponent<Text>().text = "Game Clear";
+            SceneManager.LoadScene("BossBattleScene");
+
+            /*this.gameOverText.GetComponent<Text>().text = "Game Clear";
             this.isGameOver = true;
+            */
         }
 
         //ゲームオーバーになった場合
@@ -54,8 +57,8 @@ public class UIController : MonoBehaviour
             //クリックされたらシーンをロードする
             if (Input.GetMouseButtonDown(0))
             {
-                //Samplsceneを読み込む
-                SceneManager.LoadScene("SampleScene");
+                //OnTheWaysceneを読み込む
+                SceneManager.LoadScene("OnTheWayScene");
             }
         }
     }

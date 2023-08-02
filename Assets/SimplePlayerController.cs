@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,6 +15,10 @@ namespace ClearSky
         public LayerMask enemyLayer;
         public int hp;
         public GameObject MagicBall;
+        public AudioClip seSwing;
+        public AudioClip seAttack;
+        public AudioClip seCast;
+        
 
         private Rigidbody2D rb;
         private Animator anim;
@@ -22,8 +27,9 @@ namespace ClearSky
         private bool isJumping = false;
         private bool alive = true;
         private float speed = 10f;
-        
-        
+        AudioSource audioSource;
+
+
 
 
         // Start is called before the first frame update
@@ -31,6 +37,7 @@ namespace ClearSky
         {
             rb = GetComponent<Rigidbody2D>();
             anim = GetComponent<Animator>();
+            audioSource = GetComponent<AudioSource>();
 
         }
 
@@ -75,16 +82,19 @@ namespace ClearSky
                 Debug.Log("Damage!");
                 anim.SetTrigger("hurt");
                 other.gameObject.GetComponent<EnemyManager>().PlayerDamage(this);
+                audioSource.PlayOneShot(seAttack);
+
+
                 if (direction == 1)
                     rb.AddForce(new Vector2(-12f, 1f), ForceMode2D.Impulse);
-               
+
             }
         }
 
         void Run()
         {
             Vector3 moveVelocity = Vector3.zero;
-            anim.SetBool("isRun", true);
+            anim.SetBool("isRun", false);
 
 
             if (Input.GetAxisRaw("Horizontal") < 0 && this.transform.position.x >= -6.9f)
@@ -135,6 +145,7 @@ namespace ClearSky
             if (Input.GetMouseButtonDown(0))
             {
                 anim.SetTrigger("attack");
+                audioSource.PlayOneShot(seSwing);
             }
             
    
@@ -154,6 +165,7 @@ namespace ClearSky
             Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0,-5,0);
             Vector3 shotForward = Vector3.Scale((mouseWorldPos - transform.position), new Vector3(1, 1, 0)).normalized;
             magicBall.GetComponent<Rigidbody2D>().velocity = shotForward * speed;
+            audioSource.PlayOneShot(seCast);
         }
         public void HitCheck()
         {
@@ -163,6 +175,8 @@ namespace ClearSky
                 {
                     Debug.Log(hitEnemy.gameObject.name + "に攻撃");
                     hitEnemy.GetComponent<EnemyManager>().OnDamage();
+                    audioSource.PlayOneShot(seAttack);
+     
                 }
 
             
@@ -211,5 +225,6 @@ namespace ClearSky
                 alive = true;
             }
         }
+   
     }
 }

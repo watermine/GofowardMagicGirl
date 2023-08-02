@@ -7,16 +7,15 @@ public class MonsterGenetator : MonoBehaviour
     //ゴブリンのPrefab
     public GameObject GoblinPrefab;
 
-    //時間計測用の変数
-    private float delta = 0;
+    public GameObject FlyingeyePrefab;
 
     //モンスターの生成間隔
-    private float span = 1.0f;
+    public float span = 1.0f;
 
     //モンスターの生成位置：X座標
     private float genPosX = 12;
 
-    //キューブの生成位置オフセット：X座標
+    //モンスターの生成位置オフセット：X座標
     private float offsetX = 0.5f;
 
     //モンスターの生成位置：Y座標
@@ -28,13 +27,17 @@ public class MonsterGenetator : MonoBehaviour
     //モンスターの生成個数の上限
     private int maxBlocknum = 1;
 
+    //時間計測用の変数
+    private float delta = 0;
 
+   
 
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -46,18 +49,28 @@ public class MonsterGenetator : MonoBehaviour
         if(this.delta > this.span)
         {
             this.delta = 0;
-            //生成するキューブ数をランダムに決める
-            int n =Random.Range(1, maxBlocknum+1);
 
-            //指定した数だけキューブを生成する
-            for(int i = 0; i < n; i++)
+    //生成するモンスターをランダムに決める
+    int num = Random.Range(1, 5);
+
+            if (num <= 3)
             {
-                //キューブの生成
+                //ゴブリンの生成
                 GameObject go = Instantiate(GoblinPrefab);
                 go.transform.position = new Vector2(this.genPosX, this.genPosY);
             }
-            //次のキューブまでの生成時間を決める
-            this.span = this.offsetX + this.spaceX * n;
+
+            else
+            {
+                GameObject go = Instantiate(FlyingeyePrefab);
+                go.transform.position = new Vector2(this.genPosX, this.genPosY + 2);
+            }
+           
+            
+                
+            
+            //次のモンスターまでの生成時間を決める
+            this.span = this.offsetX + this.spaceX;
         }
     }
 }
