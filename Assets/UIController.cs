@@ -54,11 +54,14 @@ public class UIController : MonoBehaviour
         //ゲームオーバーになった場合
         if(this.isGameOver == true)
         {
+            Invoke("TimeStop", 0.5f);
             //クリックされたらシーンをロードする
             if (Input.GetMouseButtonDown(0))
             {
                 //OnTheWaysceneを読み込む
                 SceneManager.LoadScene("OnTheWayScene");
+
+                Time.timeScale = 1.0f;
             }
         }
     }
@@ -67,5 +70,10 @@ public class UIController : MonoBehaviour
         //ゲームオーバーになったときに、画面上にゲームオーバーを表示する
         this.gameOverText.GetComponent<Text>().text = "Game Over";
         this.isGameOver = true;
+    }
+    void TimeStop()
+    {
+        //画面を止める
+        Time.timeScale = 0f;
     }
 }

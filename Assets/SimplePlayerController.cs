@@ -28,7 +28,10 @@ namespace ClearSky
         private bool alive = true;
         private float speed = 10f;
         AudioSource audioSource;
+        private float coolTime = 0.0f;
 
+        BoxCollider2D bc;
+        CapsuleCollider2D cc;
 
 
 
@@ -46,12 +49,17 @@ namespace ClearSky
             Restart();
             if (alive)
             {
-                Hurt();
-                Die();
-                Attack();
-                Shot();
-                Jump();
-                Run();
+                //Hurtアニメーション以外は動けるようにする
+                if(anim.GetCurrentAnimatorStateInfo(0).IsName("Hurt") == false)
+                {
+                    //Hurt();
+                    Die();
+                    Attack();
+                    Shot();
+                    Jump();
+                    Run();
+                }
+               
 
             }
             Debug.Log(hp);
@@ -77,7 +85,7 @@ namespace ClearSky
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if(other.gameObject.tag == "Monster")
+            if(other.gameObject.tag == "Monster" && (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") == false))
             {
                 Debug.Log("Damage!");
                 anim.SetTrigger("hurt");
@@ -152,9 +160,20 @@ namespace ClearSky
         }
         void Shot()
         {
-            if (Input.GetMouseButtonDown(1))
+            //クールタイムを減ずる
+            this.coolTime -= Time.deltaTime;
+
+            //マイナスなら受け付ける
+            if (this.coolTime < 0.0f)
+
+                //マウス右クリック
+                if (Input.GetMouseButtonDown(1))
             {
-                anim.SetTrigger("shot");   
+                //Trigger shot
+                anim.SetTrigger("shot");
+                    
+                //クールタイム
+                this.coolTime = 0.98f;
             }
         }
 
@@ -206,15 +225,17 @@ namespace ClearSky
        
         void Die()
         {
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            /*if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 anim.SetTrigger("die");
                 alive = false;
-            }
-            else if (hp == 0)
+            }*/
+            if (hp == 0)
             {
                 anim.SetTrigger("die");
                 alive = false;
+                //bc.enabled = false;
+                //cc.isTrigger = false;
             }
         }
         void Restart()

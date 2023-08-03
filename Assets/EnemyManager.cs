@@ -17,6 +17,7 @@ public class EnemyManager : MonoBehaviour
     public int attackPower;
 
     BoxCollider2D boxCollider2D;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +35,7 @@ public class EnemyManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     public void PlayerDamage(SimplePlayerController player)

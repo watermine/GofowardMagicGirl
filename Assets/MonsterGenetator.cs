@@ -25,7 +25,7 @@ public class MonsterGenetator : MonoBehaviour
     private float spaceX = 1.4f;
 
     //モンスターの生成個数の上限
-    private int maxBlocknum = 1;
+    //private int maxBlocknum = 1;
 
     //時間計測用の変数
     private float delta = 0;
