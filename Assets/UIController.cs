@@ -21,12 +21,20 @@ public class UIController : MonoBehaviour
     //ゲームオーバーの表示
     private bool isGameOver = false;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
         //シーンビューからオブジェクトの実体を検索する
         this.gameOverText = GameObject.Find("GameOver");
         this.runLengthText = GameObject.Find("RunLength");
+
+        //シーンの開始時にシーンモードを通常（=0）にする
+        SimplePlayerController spc;
+        GameObject player = GameObject.Find("Wizard Variant");
+        spc = player.GetComponent<SimplePlayerController>();
+        spc.sceneMode = 0;
     }
 
     // Update is called once per frame
@@ -54,12 +62,12 @@ public class UIController : MonoBehaviour
         //ゲームオーバーになった場合
         if(this.isGameOver == true)
         {
-            Invoke("TimeStop", 0.5f);
+            Invoke("TimeStop", 0.7f);
             //クリックされたらシーンをロードする
             if (Input.GetMouseButtonDown(0))
             {
-                //OnTheWaysceneを読み込む
-                SceneManager.LoadScene("OnTheWayScene");
+                //タイトルに戻る
+                SceneManager.LoadScene("TitleScene");
 
                 Time.timeScale = 1.0f;
             }

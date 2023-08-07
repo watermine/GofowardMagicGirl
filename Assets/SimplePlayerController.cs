@@ -4,20 +4,25 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-namespace ClearSky
-{
+//namespace ClearSky
+//{
     public class SimplePlayerController : MonoBehaviour
     {
+        //タイトルで初期化：HP＝5
+        public static int hp = 5;
+
         public float movePower = 10f;
         public float jumpPower = 60f; //Set Gravity Scale in Rigidbody2D Component to 5
         public Transform attackPoint;
         public float attackRadius;
         public LayerMask enemyLayer;
-        public int hp;
         public GameObject MagicBall;
         public AudioClip seSwing;
         public AudioClip seAttack;
         public AudioClip seCast;
+        //シーン変数、0 = 通常、1 = BOSS
+        [Header("0 = 通常、1 = BOSS")]
+        public int sceneMode;
         
 
         private Rigidbody2D rb;
@@ -102,7 +107,16 @@ namespace ClearSky
         void Run()
         {
             Vector3 moveVelocity = Vector3.zero;
+
+            //シーン変数でデフォルト状態を変更する
+            if(sceneMode == 0)
+        {
+            anim.SetBool("isRun", true);
+        }
+            else if(sceneMode == 1)
+        {
             anim.SetBool("isRun", false);
+        }
 
 
             if (Input.GetAxisRaw("Horizontal") < 0 && this.transform.position.x >= -6.9f)
@@ -248,4 +262,4 @@ namespace ClearSky
         }
    
     }
-}
+//}
