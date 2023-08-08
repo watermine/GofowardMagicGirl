@@ -16,6 +16,7 @@ using UnityEngine;
         public Transform attackPoint;
         public float attackRadius;
         public LayerMask enemyLayer;
+        public LayerMask bossLayer;
         public GameObject MagicBall;
         public AudioClip seSwing;
         public AudioClip seAttack;
@@ -69,11 +70,19 @@ using UnityEngine;
             }
             //Debug.Log(hp);
 
-            if (alive == false)
+            //通常シーンで死亡した場合
+            if (alive == false && sceneMode == 0)
             {
-                // UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
+                //UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
                 GameObject.Find("Canvas").GetComponent<UIController>().GameOver();
             }
+            //ボスシーンで死亡した場合
+            else if (alive == false && sceneMode == 1)
+        {
+            //BossSceneManagerのGameOver関数を呼び出して画面上に「GameOver」と表示する
+            GameObject.Find("Canvas").GetComponent<BossSceneManager>().GameOver();
+        }
+
 
         }
 
@@ -102,6 +111,18 @@ using UnityEngine;
                     rb.AddForce(new Vector2(-12f, 1f), ForceMode2D.Impulse);
 
             }
+            else if(other.gameObject.tag == "Boss" && (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") == false))
+            {
+                anim.SetTrigger("hurt");
+                other.gameObject.GetComponent<AlrauneController>().PlayerDamage(this);
+                audioSource.PlayOneShot(seAttack);
+
+
+            if (direction == 1)
+                rb.AddForce(new Vector2(-12f, 1f), ForceMode2D.Impulse);
+
+            }
+
         }
 
         void Run()
@@ -208,6 +229,15 @@ using UnityEngine;
                 {
                     //Debug.Log(hitEnemy.gameObject.name + "に攻撃");
                     hitEnemy.GetComponent<EnemyManager>().OnDamage();
+                    audioSource.PlayOneShot(seAttack);
+     
+                }
+
+                Collider2D[] hitBosses = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, bossLayer);
+                foreach (Collider2D hitBoss in hitBosses)
+                {
+                    Debug.Log(hitBoss.gameObject.name + "に攻撃");
+                    hitBoss.GetComponent<AlrauneController>().BossOnDamage();
                     audioSource.PlayOneShot(seAttack);
      
                 }

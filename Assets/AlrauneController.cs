@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class AlrauneController : MonoBehaviour
 {
+    //ƒ‚ƒ“ƒXƒ^[‚ÌUŒ‚—Í
+    public int attackPower;
+
     private Rigidbody2D rb;
     private Animator anim;
     private GameObject player;
     private float range;
+
 
     //ó‘Ô‚Ì”Ô†
     private int stateNumber = 0;
@@ -64,7 +68,7 @@ public class AlrauneController : MonoBehaviour
                         //ó‘Ô‚Ì‘JˆÚ
                         stateNumber = 2;
                     }
-                    else if (timeCounter >3.0f &&  range <= 6f)
+                    else if (timeCounter > 3.0f && range <= 6f)
                     {
                         anim.SetTrigger("LongRange");
 
@@ -120,5 +124,23 @@ public class AlrauneController : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    /*private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "MagicBall")
+        {
+            Debug.Log("Hit!");
+        }
+
+    }*/
+    public void PlayerDamage(SimplePlayerController player)
+    {
+        player.Damage(attackPower);
+    }
+
+    public void BossOnDamage()
+    {
+
     }
 }

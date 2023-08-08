@@ -26,6 +26,12 @@ public class MagicController : MonoBehaviour
             AudioSource.PlayClipAtPoint(seFire,transform.position);
             Destroy(this.gameObject);
         }
+
+        else if (other.gameObject.tag == "Boss")
+        {
+            AudioSource.PlayClipAtPoint(seFire, transform.position);
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnBecameInvisible()

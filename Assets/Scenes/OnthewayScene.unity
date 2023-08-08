@@ -3361,7 +3361,6 @@ GameObject:
   - component: {fileID: 3555104818572945955}
   - component: {fileID: 5443608004977312060}
   - component: {fileID: 5443608004977312059}
-  - component: {fileID: 5443608004977312061}
   - component: {fileID: 5443608004977312062}
   m_Layer: 0
   m_Name: Wizard Variant
@@ -3439,23 +3438,14 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  bossLayer:
+    serializedVersion: 2
+    m_Bits: 0
   MagicBall: {fileID: 3676975236793274976, guid: 64f27fdef1f6d8d49a57d4e2ae74feb6, type: 3}
   seSwing: {fileID: 8300000, guid: d8543e2133b16b4428c2a4287e4a3976, type: 3}
   seAttack: {fileID: 8300000, guid: 2934acb3e03caaf4fa75a0cfa7b812bd, type: 3}
   seCast: {fileID: 8300000, guid: d10e5cc9898551b46b9909b43fb4f79d, type: 3}
   sceneMode: 0
---- !u!114 &5443608004977312061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5443608004977312056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 214362d532690ac47b5ab0d1250309c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &5443608004977312062
 AudioSource:
   m_ObjectHideFlags: 0
