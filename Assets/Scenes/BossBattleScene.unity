@@ -4752,6 +4752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerIcon: {fileID: 1745918745439386770, guid: d0cd4fdd7234243419f9023acc1b7cf1, type: 3}
+  parentTran: {fileID: 2095748390}
 --- !u!222 &2095748393
 CanvasRenderer:
   m_ObjectHideFlags: 0

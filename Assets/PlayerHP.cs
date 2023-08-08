@@ -8,7 +8,10 @@ using UnityEngine.UIElements;
 
 public class PlayerHP : MonoBehaviour
 {
+    //HPアイコン生成に用いるイメージ画像
     public GameObject playerIcon;
+    //親に指定するオブジェクト
+    public Transform parentTran;
 
     private SimplePlayerController player;
     private int beforeHP;
@@ -26,7 +29,7 @@ public class PlayerHP : MonoBehaviour
         for(int i = 0; i < player.GetHP(); i++)
         {
             GameObject playerHPobj = Instantiate(playerIcon, transform, false);
-            playerHPobj.transform.parent = transform;
+            playerHPobj.transform.SetParent(parentTran);
             playerHPobj.GetComponent<RectTransform>().localScale = new Vector3(1f,1f,1f);
         }
     }
