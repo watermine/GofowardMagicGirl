@@ -27,6 +27,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(this.gameObject.name == "GoblinPrefab(Clone)")
         //ƒ‚ƒ“ƒXƒ^[‚ğˆÚ“®‚³‚¹‚é
         transform.Translate(this.speed * Time.deltaTime, 0, 0);
 

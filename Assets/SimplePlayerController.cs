@@ -35,8 +35,8 @@ using UnityEngine;
         AudioSource audioSource;
         private float coolTime = 0.0f;
 
-        BoxCollider2D bc;
-        CapsuleCollider2D cc;
+        //BoxCollider2D bc;
+        //CapsuleCollider2D cc;
 
 
 
@@ -67,7 +67,7 @@ using UnityEngine;
                
 
             }
-            Debug.Log(hp);
+            //Debug.Log(hp);
 
             if (alive == false)
             {
@@ -92,7 +92,7 @@ using UnityEngine;
         {
             if(other.gameObject.tag == "Monster" && (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") == false))
             {
-                Debug.Log("Damage!");
+                //Debug.Log("Damage!");
                 anim.SetTrigger("hurt");
                 other.gameObject.GetComponent<EnemyManager>().PlayerDamage(this);
                 audioSource.PlayOneShot(seAttack);
@@ -206,7 +206,7 @@ using UnityEngine;
                 Collider2D[] hitEnemys = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
                 foreach (Collider2D hitEnemy in hitEnemys)
                 {
-                    Debug.Log(hitEnemy.gameObject.name + "に攻撃");
+                    //Debug.Log(hitEnemy.gameObject.name + "に攻撃");
                     hitEnemy.GetComponent<EnemyManager>().OnDamage();
                     audioSource.PlayOneShot(seAttack);
      
@@ -220,7 +220,7 @@ using UnityEngine;
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(attackPoint.position,attackRadius);
         }
-        void Hurt()
+        /*void Hurt()
         {
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -230,7 +230,7 @@ using UnityEngine;
                 else
                     rb.AddForce(new Vector2(5f, 1f), ForceMode2D.Impulse);
             }
-        }
+        }*/
 
         public void Damage(int damage)
         {

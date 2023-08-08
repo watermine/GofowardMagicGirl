@@ -25,7 +25,7 @@ public class PlayerHP : MonoBehaviour
     {
         for(int i = 0; i < player.GetHP(); i++)
         {
-            GameObject playerHPobj = Instantiate(playerIcon);
+            GameObject playerHPobj = Instantiate(playerIcon, transform, false);
             playerHPobj.transform.parent = transform;
             playerHPobj.GetComponent<RectTransform>().localScale = new Vector3(1f,1f,1f);
         }
