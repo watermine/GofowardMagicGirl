@@ -56,7 +56,7 @@ public class BossSceneManager : MonoBehaviour
     public void GameClear()
     {
         //ボスを倒したときに、画面上にゲームクリアを表示する
-        this.gameOverText.GetComponent<Text>().text = "Game Clear";
+        this.gameOverText.GetComponent<Text>().text = "Game Clear!";
         this.isGameOver = true;
     }
 

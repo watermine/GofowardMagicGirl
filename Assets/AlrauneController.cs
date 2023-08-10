@@ -42,12 +42,10 @@ public class AlrauneController : MonoBehaviour
 
         if (bossHP <= 0)
         {
-            anim.SetTrigger("Die");
+            timeCounter = 0;
+            anim.SetTrigger("Down");
 
             //Destroy(this.gameObject, 0.4f);
-
-            //ボスが倒された際にゲームクリアを表示
-            GameObject.Find("Canvas").GetComponent<BossSceneManager>().GameClear();
             
         }
 
@@ -167,6 +165,13 @@ public class AlrauneController : MonoBehaviour
     {
         bossHP -= 1;
         
+    }
+
+    public void GameEnd()
+    {
+        
+        //ボスが倒された際にゲームクリアを表示
+        GameObject.Find("Canvas").GetComponent<BossSceneManager>().GameClear();
     }
 
 }
