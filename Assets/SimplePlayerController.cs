@@ -236,7 +236,7 @@ using UnityEngine;
                 Collider2D[] hitBosses = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, bossLayer);
                 foreach (Collider2D hitBoss in hitBosses)
                 {
-                    Debug.Log(hitBoss.gameObject.name + "に攻撃");
+                    //Debug.Log(hitBoss.gameObject.name + "に攻撃");
                     hitBoss.GetComponent<AlrauneController>().BossOnDamage();
                     audioSource.PlayOneShot(seAttack);
      

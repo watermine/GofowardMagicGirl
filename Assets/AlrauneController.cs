@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AlrauneController : MonoBehaviour
 {
-    //モンスターの攻撃力
+    //攻撃力
     public int attackPower;
+    //HP
+    public float bossHP = 10;
 
-    private Rigidbody2D rb;
     private Animator anim;
+    private Rigidbody2D rb;
     private GameObject player;
     private float range;
+    
 
 
     //状態の番号
@@ -32,6 +36,23 @@ public class AlrauneController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(bossHP);
+
+        //ボスのHPが0になったらクリア
+
+        if (bossHP <= 0)
+        {
+            anim.SetTrigger("Die");
+
+            //Destroy(this.gameObject, 0.4f);
+
+            //ボスが倒された際にゲームクリアを表示
+            GameObject.Find("Canvas").GetComponent<BossSceneManager>().GameClear();
+            
+        }
+
+
+        //ステートパターン分岐部分
         //タイマー更新
         timeCounter += Time.deltaTime;
 
@@ -126,14 +147,17 @@ public class AlrauneController : MonoBehaviour
         }
     }
 
-    /*private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "MagicBall")
         {
-            Debug.Log("Hit!");
+            bossHP -= 1;
+            
         }
 
-    }*/
+    }
+
+
     public void PlayerDamage(SimplePlayerController player)
     {
         player.Damage(attackPower);
@@ -141,6 +165,8 @@ public class AlrauneController : MonoBehaviour
 
     public void BossOnDamage()
     {
-
+        bossHP -= 1;
+        
     }
+
 }
