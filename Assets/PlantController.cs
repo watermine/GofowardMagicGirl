@@ -25,15 +25,15 @@ public class PlantController : MonoBehaviour
 
         if (moveTimer > 0 && moveTimer < 0.3f)
         {
-            transform.Translate(0, +0.01f, 0);
+            transform.Translate(0, +3.00f * Time.deltaTime, 0);
         }
         else if (moveTimer > 0.4f && moveTimer < 0.8f)
         {
-            transform.Translate(0, -0.01f, 0);
+            transform.Translate(0, -3.00f * Time.deltaTime, 0);
         }
         else if (moveTimer > 1.2f && moveTimer < 1.5f)
         {
-            transform.Translate(0, 0.04f, 0);
+            transform.Translate(0, 12.0f * Time.deltaTime, 0);
         }
 
         damageTimer += Time.deltaTime;
