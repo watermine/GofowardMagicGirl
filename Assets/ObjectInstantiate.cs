@@ -43,9 +43,9 @@ public class ObjectInstantiate : MonoBehaviour
     public void CreatePlant()
     {
         int num = Random.Range(-1, 2);
-        GameObject plant1 = Instantiate(plantPrefab, new Vector2(3 + num,-2f), Quaternion.Euler(0,0,0));
-        GameObject plant2 = Instantiate(plantPrefab, new Vector2(-2 + num,-2f), Quaternion.Euler(0, 0, 0));
-        GameObject plant3 = Instantiate(plantPrefab, new Vector2(-7 + num,-2f), Quaternion.Euler(0, 0, 0));
+        GameObject plant1 = Instantiate(plantPrefab, new Vector2(3 + num,-5), Quaternion.Euler(0,0,0));
+        GameObject plant2 = Instantiate(plantPrefab, new Vector2(-2 + num,-5), Quaternion.Euler(0, 0, 0));
+        GameObject plant3 = Instantiate(plantPrefab, new Vector2(-7 + num,-5), Quaternion.Euler(0, 0, 0));
 
         Destroy(plant1, 3f);
         Destroy(plant2, 3f);
