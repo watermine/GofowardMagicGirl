@@ -41,7 +41,7 @@ using UnityEngine;
 
 
 
-        // Start is called before the first frame update
+    // Start is called before the first frame update
         void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -52,7 +52,7 @@ using UnityEngine;
 
         private void Update()
         {
-            Restart();
+        Restart();
             if (alive)
             {
                 //Hurtアニメーション以外は動けるようにする
@@ -78,10 +78,10 @@ using UnityEngine;
             }
             //ボスシーンで死亡した場合
             else if (alive == false && sceneMode == 1)
-        {
+            {
             //BossSceneManagerのGameOver関数を呼び出して画面上に「GameOver」と表示する
             GameObject.Find("Canvas").GetComponent<BossSceneManager>().GameOver();
-        }
+            }
 
 
         }
@@ -95,7 +95,22 @@ using UnityEngine;
         {
             anim.SetBool("isJump", false);
 
+        if(other.gameObject.tag == "Arms")
+        {
+
+                anim.SetTrigger("hurt");
+                hp -= 1;
+                rb.AddForce(new Vector2(-8f, 1f), ForceMode2D.Impulse);
+                audioSource.PlayOneShot(seAttack);
+                //other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                //Destroy(other.gameObject);
+
+            
+
         }
+
+    }
+        
 
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -111,7 +126,7 @@ using UnityEngine;
                     rb.AddForce(new Vector2(-12f, 1f), ForceMode2D.Impulse);
 
             }
-            else if(other.gameObject.tag == "Boss" && (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") == false))
+            else if(other.gameObject.tag == "Boss" && (anim.GetCurrentAnimatorStateInfo(0).IsName("Die") == false ))
             {
                 anim.SetTrigger("hurt");
                 other.gameObject.GetComponent<AlrauneController>().PlayerDamage(this);
@@ -122,6 +137,7 @@ using UnityEngine;
                 rb.AddForce(new Vector2(-12f, 1f), ForceMode2D.Impulse);
 
             }
+
 
         }
 

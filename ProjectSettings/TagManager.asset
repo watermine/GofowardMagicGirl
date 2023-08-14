@@ -9,6 +9,7 @@ TagManager:
   - Cube
   - MagicBall
   - Boss
+  - Arms
   layers:
   - Default
   - TransparentFX

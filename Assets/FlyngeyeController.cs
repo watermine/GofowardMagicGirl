@@ -39,7 +39,7 @@ public class FlyngeyeController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("è’ìÀ");
+            //Debug.Log("è’ìÀ");
             this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
             Vector2 force = (new Vector2(5f, 4f));

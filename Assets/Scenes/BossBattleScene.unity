@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 222475054}
   m_Layer: 0
   m_Name: Wizard Variant
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1625,7 +1625,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: e282397d171c538419def001e94fb034, type: 3}
     m_FontSize: 190
     m_FontStyle: 0
     m_BestFit: 0
@@ -2071,7 +2071,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185691424}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3230ad3377aae846939b399f148eb0c, type: 3}
   m_Name: 
@@ -2084,7 +2084,23 @@ MonoBehaviour:
   target6: {fileID: 1335031498}
   target7: {fileID: 1354020706}
   target8: {fileID: 1615380149}
+  isFlashing: 0
   cycle: 0.2
+--- !u!114 &1185691434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185691424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b44ce015ae10974282b440abdcba553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordPrefab: {fileID: 8053642355015913421, guid: 07875c87786f9dd48a59d6a22f04ce7c, type: 3}
+  crossswordPrefab: {fileID: 2296388978707199964, guid: 5f607bcbbfd458744a9d7dec3bf0b21e, type: 3}
+  plantPrefab: {fileID: 5750099008332236929, guid: 89706803fd609ec41b3296fa00f9d30d, type: 3}
 --- !u!1 &1189871920
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class RendererSwitcher : MonoBehaviour
     public Renderer target6;
     public Renderer target7;
     public Renderer target8;
+    public bool isFlashing = false;
 
 
     //“_–ÅŽüŠú
@@ -23,7 +24,10 @@ public class RendererSwitcher : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (isFlashing == false)
+        {
+            this.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -46,6 +50,7 @@ public class RendererSwitcher : MonoBehaviour
         target7.enabled = repeatValue >= cycle * 0.5f;
         target8.enabled = repeatValue >= cycle * 0.5f;
 
+       
 
     }
 
@@ -53,4 +58,5 @@ public class RendererSwitcher : MonoBehaviour
     {
 
     }
+
 }
