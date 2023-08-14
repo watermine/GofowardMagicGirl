@@ -21,6 +21,8 @@ public class UIController : MonoBehaviour
     //ゲームオーバーの表示
     private bool isGameOver = false;
 
+    private GameObject mongen;
+
     
 
     // Start is called before the first frame update
@@ -35,6 +37,8 @@ public class UIController : MonoBehaviour
         GameObject player = GameObject.Find("Wizard Variant");
         spc = player.GetComponent<SimplePlayerController>();
         spc.sceneMode = 0;
+
+        mongen = GameObject.Find("MonsterGenerator");
     }
 
     // Update is called once per frame
@@ -47,6 +51,12 @@ public class UIController : MonoBehaviour
 
             //走った距離を表示する
             this.runLengthText.GetComponent<Text>().text = "Distance：" + len.ToString("F2") + "m";
+        }
+
+
+        if(this.len > 85)
+        {
+            mongen.GetComponent<MonsterGenetator>().enabled = false;
         }
 
         //一定距離以上走ればボスシーンへ
